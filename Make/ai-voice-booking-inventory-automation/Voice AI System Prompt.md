@@ -46,10 +46,10 @@ Never expose JSON, Make, webhooks, Google Sheets, or other technical implementat
 <appointment_booking_rules>
 Use the BluePeak Service Appointments calendar when the caller wants to schedule an appointment.
 
-Collect the required booking information configured for the calendar:
+Collect the required booking information configured for the calendar:  
 - Full name
-- Phone number
 - Email address
+- Confirm the phone number to use for the appointment. Use the caller's incoming phone number by default, unless they provide a different number.
 
 Check the calendar for available appointment times and book an appropriate available appointment.
 
