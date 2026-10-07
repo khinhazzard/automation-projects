@@ -1,0 +1,785 @@
+{
+    "name": "Inventory Lookup",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 3847458,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -100,
+                    "y": 413,
+                    "name": "Inventory Lookup"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "cd3032e59014feb5"
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "Inventory Lookup"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "item",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 5,
+            "module": "google-sheets:getSheetContent",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 11621017
+            },
+            "mapper": {
+                "from": "drive",
+                "range": "A:E",
+                "select": "list",
+                "sheetId": "BluePeak_Inventory",
+                "spreadsheetId": "/1YYx3v9ynYpuujAPRPBb8L0dgCwWhunO5/1n2TFxYCZ2q8WJBYi151uZGaboHU9cqqBO50KIf09bn4",
+                "includesHeaders": true,
+                "valueRenderOption": "FORMATTED_VALUE",
+                "dateTimeRenderOption": "FORMATTED_STRING"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 212,
+                    "y": 350,
+                    "name": "Get Inventory"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "a68628f74625c8c"
+                },
+                "restore": {
+                    "expect": {
+                        "from": {
+                            "label": "My Drive",
+                            "collapsed": true
+                        },
+                        "select": {
+                            "label": "Search by path",
+                            "collapsed": true
+                        },
+                        "sheetId": {
+                            "label": "BluePeak_Inventory",
+                            "collapsed": true
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "BluePeak_AI_Voice_Booking_Inventory_Project_Specification",
+                                "BluePeak_Inventory"
+                            ],
+                            "collapsed": true
+                        },
+                        "includesHeaders": {
+                            "mode": "chose"
+                        },
+                        "valueRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted value"
+                        },
+                        "dateTimeRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted string"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "JPaw Digital BluePeak Inventory (jpawdigital@gmail.com)",
+                            "collapsed": true
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "list",
+                                "fromAll",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "range",
+                        "type": "text",
+                        "label": "Range",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "boolean",
+                        "label": "Table contains headers",
+                        "required": true
+                    },
+                    {
+                        "name": "valueRenderOption",
+                        "type": "select",
+                        "label": "Value render option",
+                        "validate": {
+                            "enum": [
+                                "FORMATTED_VALUE",
+                                "UNFORMATTED_VALUE",
+                                "FORMULA"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "dateTimeRenderOption",
+                        "type": "select",
+                        "label": "Date and time render option",
+                        "validate": {
+                            "enum": [
+                                "SERIAL_NUMBER",
+                                "FORMATTED_STRING"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "tableFirstRow",
+                        "type": "text",
+                        "label": "Row with headers"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "__ROW_NUMBER__",
+                        "type": "number",
+                        "label": "Row number"
+                    },
+                    {
+                        "name": "__SPREADSHEET_ID__",
+                        "type": "text",
+                        "label": "Spreadsheet ID"
+                    },
+                    {
+                        "name": "__SHEET__",
+                        "type": "text",
+                        "label": "Sheet"
+                    },
+                    {
+                        "name": "0",
+                        "type": "text",
+                        "label": "SKU (A)"
+                    },
+                    {
+                        "name": "1",
+                        "type": "text",
+                        "label": "Item (B)"
+                    },
+                    {
+                        "name": "2",
+                        "type": "text",
+                        "label": "Category (C)"
+                    },
+                    {
+                        "name": "3",
+                        "type": "text",
+                        "label": "Quantity (D)"
+                    },
+                    {
+                        "name": "4",
+                        "type": "text",
+                        "label": "Status (E)"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 14,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 5
+            },
+            "filter": {
+                "name": "Match Requested Item",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{5.`1`}}",
+                            "b": "{{1.item}}",
+                            "o": "text:equal"
+                        }
+                    ]
+                ]
+            },
+            "mapper": {
+                "1": "{{5.`1`}}",
+                "3": "{{5.`3`}}",
+                "4": "{{5.`4`}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 635,
+                    "y": 352,
+                    "name": "Match Result"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "d4265f2c02e87a98"
+                },
+                "restore": {
+                    "extra": {
+                        "feeder": {
+                            "label": "Get Inventory - Get Range Values [5]"
+                        },
+                        "mapper": {
+                            "collapsed": true
+                        },
+                        "target": {
+                            "label": "Custom"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 22,
+            "module": "util:SetVariable2",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "name": "matched_status",
+                "value": "{{14.array[].`4`}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 789,
+                    "y": 579,
+                    "name": "Extract Matched Status"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "128604d341beca6c"
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Variable name",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "label": "Variable value"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "matched_status",
+                        "type": "any",
+                        "label": "matched_status"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 24,
+            "module": "util:SetVariable2",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "name": "available",
+                "value": "{{14.array[].`3` > 0}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 502,
+                    "y": 578,
+                    "name": "Determine Availability"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "f01309b2047445d7"
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Variable name",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "label": "Variable value"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "available",
+                        "type": "any",
+                        "label": "available"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 23,
+            "module": "util:SetVariable2",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "name": "matched_quantity",
+                "value": "{{14.array[].`3`}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 236,
+                    "y": 572,
+                    "name": "Extract Matched Quantity"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "81c3cf56e28a872"
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Variable name",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "label": "Variable value"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "matched_quantity",
+                        "type": "any",
+                        "label": "matched_quantity"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 20,
+            "module": "util:SetVariables",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "variables": [
+                    {
+                        "name": "found",
+                        "value": "{{length(14.array) > 0}}"
+                    },
+                    {
+                        "name": "available",
+                        "value": "{{24.available}}"
+                    },
+                    {
+                        "name": "quantity",
+                        "value": "{{ifempty(23.matched_quantity; 0)}}"
+                    },
+                    {
+                        "name": "item",
+                        "value": "{{1.item}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": -79,
+                    "y": 716,
+                    "name": "Process Inventory Result"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "9a4b20181a2b58c0"
+                },
+                "restore": {
+                    "expect": {
+                        "variables": {
+                            "items": [
+                                {
+                                    "name": {
+                                        "collapsed": true
+                                    },
+                                    "value": {
+                                        "collapsed": true
+                                    }
+                                },
+                                {
+                                    "name": {
+                                        "collapsed": true
+                                    },
+                                    "value": {
+                                        "collapsed": true
+                                    }
+                                },
+                                null,
+                                {
+                                    "name": {
+                                        "collapsed": true
+                                    },
+                                    "value": {
+                                        "collapsed": true
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "variables",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": "Variable name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "any",
+                                    "label": "Variable value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Variable"
+                        },
+                        "type": "array",
+                        "label": "Variables",
+                        "validate": {
+                            "unique": {
+                                "by": "name"
+                            },
+                            "minItems": 1
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "found",
+                        "type": "any",
+                        "label": "found"
+                    },
+                    {
+                        "name": "available",
+                        "type": "any",
+                        "label": "available"
+                    },
+                    {
+                        "name": "quantity",
+                        "type": "any",
+                        "label": "quantity"
+                    },
+                    {
+                        "name": "item",
+                        "type": "any",
+                        "label": "item"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 17,
+            "module": "json:CreateJSON",
+            "version": 1,
+            "parameters": {
+                "type": 618991,
+                "space": ""
+            },
+            "mapper": {
+                "Item": "{{20.item}}",
+                "Found": "{{20.found}}",
+                "Quantity": "{{20.quantity}}",
+                "Available": "{{20.available}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 349,
+                    "y": 806,
+                    "name": "Format Inventory Result"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "86c251e71aea4470"
+                },
+                "restore": {
+                    "expect": {
+                        "Found": {
+                            "mode": "edit"
+                        },
+                        "Available": {
+                            "mode": "edit"
+                        }
+                    },
+                    "parameters": {
+                        "type": {
+                            "label": "Inventory Result"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure",
+                        "required": true
+                    },
+                    {
+                        "name": "space",
+                        "type": "select",
+                        "label": "Indentation",
+                        "validate": {
+                            "enum": [
+                                "tab",
+                                "2",
+                                "4"
+                            ]
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "Found",
+                        "type": "boolean",
+                        "label": null,
+                        "required": true
+                    },
+                    {
+                        "name": "Available",
+                        "type": "boolean",
+                        "label": null,
+                        "required": true
+                    },
+                    {
+                        "name": "Quantity",
+                        "type": "number",
+                        "label": null
+                    },
+                    {
+                        "name": "Item",
+                        "type": "text",
+                        "label": null,
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "gateway:WebhookRespond",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "body": "{\n  \"found\": {{20.found}},\n  \"available\": {{20.available}},\n  \"quantity\": {{20.quantity}},\n  \"item\": \"{{20.item}}\"\n}",
+                "status": "200",
+                "headers": []
+            },
+            "metadata": {
+                "designer": {
+                    "x": 648,
+                    "y": 804,
+                    "name": "Return Inventory Result"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "9b291ed309bcf96a"
+                },
+                "restore": {
+                    "expect": {
+                        "headers": {
+                            "mode": "chose"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "status",
+                        "type": "uinteger",
+                        "label": "Status",
+                        "required": true,
+                        "validate": {
+                            "min": 100
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true,
+                                "validate": {
+                                    "max": 256
+                                }
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true,
+                                "validate": {
+                                    "max": 4096
+                                }
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Custom headers",
+                        "validate": {
+                            "maxItems": 16
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}
