@@ -17,12 +17,12 @@
                     "name": "Inventory Lookup"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "cd3032e59014feb5",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "cd3032e59014feb5"
+                    }
                 },
                 "restore": {
                     "parameters": {
@@ -79,12 +79,12 @@
                     "name": "Get Inventory"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "a68628f74625c8c",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "a68628f74625c8c"
+                    }
                 },
                 "restore": {
                     "expect": {
@@ -284,9 +284,9 @@
                 "conditions": [
                     [
                         {
-                            "a": "{{5.`1`}}",
-                            "b": "{{1.item}}",
-                            "o": "text:equal"
+                            "a": "{{lower(5.`1`)}}",
+                            "o": "text:equal",
+                            "b": "{{lower(1.item)}}"
                         }
                     ]
                 ]
@@ -303,12 +303,12 @@
                     "name": "Match Result"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "d4265f2c02e87a98",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "d4265f2c02e87a98"
+                    }
                 },
                 "restore": {
                     "extra": {
@@ -341,12 +341,12 @@
                     "name": "Extract Matched Status"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "128604d341beca6c",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "128604d341beca6c"
+                    }
                 },
                 "restore": {},
                 "expect": [
@@ -387,12 +387,12 @@
                     "name": "Determine Availability"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "f01309b2047445d7",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "f01309b2047445d7"
+                    }
                 },
                 "restore": {},
                 "expect": [
@@ -433,12 +433,12 @@
                     "name": "Extract Matched Quantity"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "81c3cf56e28a872",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "81c3cf56e28a872"
+                    }
                 },
                 "restore": {},
                 "expect": [
@@ -495,12 +495,12 @@
                     "name": "Process Inventory Result"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "9a4b20181a2b58c0",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "9a4b20181a2b58c0"
+                    }
                 },
                 "restore": {
                     "expect": {
