@@ -19,3 +19,9 @@ The Fixes:
 → Made the Google Sheets and Table from Knowledge base exactly the same with the wordings
 
 → Added lowercase normalization to both sides of the Make filter so inventory matching is no longer affected by casing differences
+
+→ Set Wait before speaking from 0 to 0.5
+
+→ Set Idle frequency timer from 4 secs to 5 secs, then reminder from 1x to 2x
+
+→ Updated Calendar Timezone
