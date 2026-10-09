@@ -25,3 +25,5 @@ The Fixes:
 → Set Idle frequency timer from 4 secs to 5 secs, then reminder from 1x to 2x
 
 → Updated Calendar Timezone
+
+→ fixed conflicting "Gallon" and "Gal" wordings from PDF Knowledge base
