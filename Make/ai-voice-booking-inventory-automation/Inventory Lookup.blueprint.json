@@ -16,14 +16,6 @@
                     "y": 413,
                     "name": "Inventory Lookup"
                 },
-                "setupValidation": {
-                    "version": 1,
-                    "configuration": "cd3032e59014feb5",
-                    "result": {
-                        "valid": true,
-                        "fields": []
-                    }
-                },
                 "restore": {
                     "parameters": {
                         "hook": {
@@ -79,12 +71,12 @@
                     "name": "Get Inventory"
                 },
                 "setupValidation": {
-                    "version": 1,
-                    "configuration": "a68628f74625c8c",
                     "result": {
                         "valid": true,
                         "fields": []
-                    }
+                    },
+                    "version": 1,
+                    "configuration": "a68628f74625c8c"
                 },
                 "restore": {
                     "expect": {
@@ -285,8 +277,8 @@
                     [
                         {
                             "a": "{{lower(5.`1`)}}",
-                            "o": "text:equal",
-                            "b": "{{lower(1.item)}}"
+                            "b": "{{lower(1.item)}}",
+                            "o": "text:equal"
                         }
                     ]
                 ]
@@ -303,12 +295,12 @@
                     "name": "Match Result"
                 },
                 "setupValidation": {
-                    "version": 1,
-                    "configuration": "d4265f2c02e87a98",
                     "result": {
                         "valid": true,
                         "fields": []
-                    }
+                    },
+                    "version": 1,
+                    "configuration": "d4265f2c02e87a98"
                 },
                 "restore": {
                     "extra": {
@@ -339,14 +331,6 @@
                     "x": 789,
                     "y": 579,
                     "name": "Extract Matched Status"
-                },
-                "setupValidation": {
-                    "version": 1,
-                    "configuration": "128604d341beca6c",
-                    "result": {
-                        "valid": true,
-                        "fields": []
-                    }
                 },
                 "restore": {},
                 "expect": [
@@ -386,14 +370,6 @@
                     "y": 578,
                     "name": "Determine Availability"
                 },
-                "setupValidation": {
-                    "version": 1,
-                    "configuration": "f01309b2047445d7",
-                    "result": {
-                        "valid": true,
-                        "fields": []
-                    }
-                },
                 "restore": {},
                 "expect": [
                     {
@@ -431,14 +407,6 @@
                     "x": 236,
                     "y": 572,
                     "name": "Extract Matched Quantity"
-                },
-                "setupValidation": {
-                    "version": 1,
-                    "configuration": "81c3cf56e28a872",
-                    "result": {
-                        "valid": true,
-                        "fields": []
-                    }
                 },
                 "restore": {},
                 "expect": [
@@ -493,14 +461,6 @@
                     "x": -79,
                     "y": 716,
                     "name": "Process Inventory Result"
-                },
-                "setupValidation": {
-                    "version": 1,
-                    "configuration": "9a4b20181a2b58c0",
-                    "result": {
-                        "valid": true,
-                        "fields": []
-                    }
                 },
                 "restore": {
                     "expect": {
@@ -610,14 +570,6 @@
                     "y": 806,
                     "name": "Format Inventory Result"
                 },
-                "setupValidation": {
-                    "result": {
-                        "valid": true,
-                        "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "86c251e71aea4470"
-                },
                 "restore": {
                     "expect": {
                         "Found": {
@@ -698,14 +650,6 @@
                     "x": 648,
                     "y": 804,
                     "name": "Return Inventory Result"
-                },
-                "setupValidation": {
-                    "result": {
-                        "valid": true,
-                        "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "9b291ed309bcf96a"
                 },
                 "restore": {
                     "expect": {
