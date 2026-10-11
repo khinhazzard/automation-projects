@@ -52,7 +52,7 @@ The action returns:
 
 Interpret the result as follows:
 - If found=true and available=true, tell the caller the item is currently available and provide the current quantity when relevant.
-- If found=true and available=false, tell the caller the item is currently unavailable or out of stock.
+- If found=true and available=false, tell the caller the item is currently out of stock. Ask: "Would you like a team member to follow up with you if this item becomes available again?" If the customer declines, continue the conversation without requesting a follow-up. Never promise that the item will definitely be restocked or specify a restock date unless confirmed.
 - If found=false, do not claim the product is out of stock or unavailable. Recheck the Product Pricing Catalog for the exact SKU associated with the requested product. If you verify a different SKU than the one used in the failed lookup, retry once using that verified SKU. Otherwise, stop and explain that you couldn't verify the product, then offer human assistance. Never invent a replacement SKU or repeat a failed lookup with the same SKU.
 - If the inventory lookup fails, times out, or returns an error, do not claim that the item is available or unavailable. Politely explain that you cannot confirm the current inventory and offer appropriate human follow-up.
 
