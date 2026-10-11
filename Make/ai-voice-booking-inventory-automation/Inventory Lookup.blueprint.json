@@ -12,9 +12,17 @@
             "mapper": {},
             "metadata": {
                 "designer": {
-                    "x": -100,
-                    "y": 413,
+                    "x": -80,
+                    "y": 421,
                     "name": "Inventory Lookup"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "26d65df0c987f162"
                 },
                 "restore": {
                     "parameters": {
@@ -41,7 +49,7 @@
                 ],
                 "interface": [
                     {
-                        "name": "item",
+                        "name": "sku",
                         "type": "text"
                     }
                 ]
@@ -66,17 +74,17 @@
             },
             "metadata": {
                 "designer": {
-                    "x": 212,
-                    "y": 350,
+                    "x": 221,
+                    "y": 339,
                     "name": "Get Inventory"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "a68628f74625c8c",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "a68628f74625c8c"
+                    }
                 },
                 "restore": {
                     "expect": {
@@ -276,39 +284,37 @@
                 "conditions": [
                     [
                         {
-                            "a": "{{lower(5.`1`)}}",
-                            "b": "{{lower(1.item)}}",
+                            "a": "{{lower(5.`0`)}}",
+                            "b": "{{lower(1.sku)}}",
                             "o": "text:equal"
                         }
                     ]
                 ]
             },
             "mapper": {
+                "0": "{{5.`0`}}",
                 "1": "{{5.`1`}}",
                 "3": "{{5.`3`}}",
                 "4": "{{5.`4`}}"
             },
             "metadata": {
                 "designer": {
-                    "x": 635,
-                    "y": 352,
+                    "x": 674,
+                    "y": 327,
                     "name": "Match Result"
                 },
                 "setupValidation": {
+                    "version": 1,
+                    "configuration": "1a0662b489d0245d",
                     "result": {
                         "valid": true,
                         "fields": []
-                    },
-                    "version": 1,
-                    "configuration": "d4265f2c02e87a98"
+                    }
                 },
                 "restore": {
                     "extra": {
                         "feeder": {
                             "label": "Get Inventory - Get Range Values [5]"
-                        },
-                        "mapper": {
-                            "collapsed": true
                         },
                         "target": {
                             "label": "Custom"
@@ -318,391 +324,487 @@
             }
         },
         {
-            "id": 22,
-            "module": "util:SetVariable2",
+            "id": 39,
+            "module": "builtin:BasicRouter",
             "version": 1,
-            "parameters": {},
-            "mapper": {
-                "name": "matched_status",
-                "value": "{{14.array[].`4`}}"
-            },
+            "mapper": null,
             "metadata": {
                 "designer": {
-                    "x": 789,
-                    "y": 579,
-                    "name": "Extract Matched Status"
-                },
-                "restore": {},
-                "expect": [
-                    {
-                        "name": "name",
-                        "type": "text",
-                        "label": "Variable name",
-                        "required": true
-                    },
-                    {
-                        "name": "value",
-                        "type": "any",
-                        "label": "Variable value"
-                    }
-                ],
-                "interface": [
-                    {
-                        "name": "matched_status",
-                        "type": "any",
-                        "label": "matched_status"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 24,
-            "module": "util:SetVariable2",
-            "version": 1,
-            "parameters": {},
-            "mapper": {
-                "name": "available",
-                "value": "{{14.array[].`3` > 0}}"
+                    "x": 848,
+                    "y": 579
+                }
             },
-            "metadata": {
-                "designer": {
-                    "x": 502,
-                    "y": 578,
-                    "name": "Determine Availability"
-                },
-                "restore": {},
-                "expect": [
-                    {
-                        "name": "name",
-                        "type": "text",
-                        "label": "Variable name",
-                        "required": true
-                    },
-                    {
-                        "name": "value",
-                        "type": "any",
-                        "label": "Variable value"
-                    }
-                ],
-                "interface": [
-                    {
-                        "name": "available",
-                        "type": "any",
-                        "label": "available"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 23,
-            "module": "util:SetVariable2",
-            "version": 1,
-            "parameters": {},
-            "mapper": {
-                "name": "matched_quantity",
-                "value": "{{14.array[].`3`}}"
-            },
-            "metadata": {
-                "designer": {
-                    "x": 236,
-                    "y": 572,
-                    "name": "Extract Matched Quantity"
-                },
-                "restore": {},
-                "expect": [
-                    {
-                        "name": "name",
-                        "type": "text",
-                        "label": "Variable name",
-                        "required": true
-                    },
-                    {
-                        "name": "value",
-                        "type": "any",
-                        "label": "Variable value"
-                    }
-                ],
-                "interface": [
-                    {
-                        "name": "matched_quantity",
-                        "type": "any",
-                        "label": "matched_quantity"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 20,
-            "module": "util:SetVariables",
-            "version": 1,
-            "parameters": {},
-            "mapper": {
-                "variables": [
-                    {
-                        "name": "found",
-                        "value": "{{length(14.array) > 0}}"
-                    },
-                    {
-                        "name": "available",
-                        "value": "{{24.available}}"
-                    },
-                    {
-                        "name": "quantity",
-                        "value": "{{ifempty(23.matched_quantity; 0)}}"
-                    },
-                    {
-                        "name": "item",
-                        "value": "{{1.item}}"
-                    }
-                ]
-            },
-            "metadata": {
-                "designer": {
-                    "x": -79,
-                    "y": 716,
-                    "name": "Process Inventory Result"
-                },
-                "restore": {
-                    "expect": {
-                        "variables": {
-                            "items": [
-                                {
-                                    "name": {
-                                        "collapsed": true
-                                    },
-                                    "value": {
-                                        "collapsed": true
-                                    }
-                                },
-                                {
-                                    "name": {
-                                        "collapsed": true
-                                    },
-                                    "value": {
-                                        "collapsed": true
-                                    }
-                                },
-                                null,
-                                {
-                                    "name": {
-                                        "collapsed": true
-                                    },
-                                    "value": {
-                                        "collapsed": true
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                },
-                "expect": [
-                    {
-                        "name": "variables",
-                        "spec": {
-                            "name": "value",
-                            "spec": [
-                                {
-                                    "name": "name",
-                                    "type": "text",
-                                    "label": "Variable name",
-                                    "required": true
-                                },
-                                {
-                                    "name": "value",
-                                    "type": "any",
-                                    "label": "Variable value"
-                                }
-                            ],
-                            "type": "collection",
-                            "label": "Variable"
-                        },
-                        "type": "array",
-                        "label": "Variables",
-                        "validate": {
-                            "unique": {
-                                "by": "name"
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 41,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "filter": {
+                                "name": "Invalid SKU",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{14.`__IMTAGGLENGTH__`}}",
+                                            "o": "number:equal",
+                                            "b": "0"
+                                        }
+                                    ]
+                                ]
                             },
-                            "minItems": 1
-                        }
-                    }
-                ],
-                "interface": [
-                    {
-                        "name": "found",
-                        "type": "any",
-                        "label": "found"
-                    },
-                    {
-                        "name": "available",
-                        "type": "any",
-                        "label": "available"
-                    },
-                    {
-                        "name": "quantity",
-                        "type": "any",
-                        "label": "quantity"
-                    },
-                    {
-                        "name": "item",
-                        "type": "any",
-                        "label": "item"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 17,
-            "module": "json:CreateJSON",
-            "version": 1,
-            "parameters": {
-                "type": 618991,
-                "space": ""
-            },
-            "mapper": {
-                "Item": "{{20.item}}",
-                "Found": "{{20.found}}",
-                "Quantity": "{{20.quantity}}",
-                "Available": "{{20.available}}"
-            },
-            "metadata": {
-                "designer": {
-                    "x": 349,
-                    "y": 806,
-                    "name": "Format Inventory Result"
-                },
-                "restore": {
-                    "expect": {
-                        "Found": {
-                            "mode": "edit"
-                        },
-                        "Available": {
-                            "mode": "edit"
-                        }
-                    },
-                    "parameters": {
-                        "type": {
-                            "label": "Inventory Result"
-                        },
-                        "space": {
-                            "label": "Empty"
-                        }
-                    }
-                },
-                "parameters": [
-                    {
-                        "name": "type",
-                        "type": "udt",
-                        "label": "Data structure",
-                        "required": true
-                    },
-                    {
-                        "name": "space",
-                        "type": "select",
-                        "label": "Indentation",
-                        "validate": {
-                            "enum": [
-                                "tab",
-                                "2",
-                                "4"
-                            ]
-                        }
-                    }
-                ],
-                "expect": [
-                    {
-                        "name": "Found",
-                        "type": "boolean",
-                        "label": null,
-                        "required": true
-                    },
-                    {
-                        "name": "Available",
-                        "type": "boolean",
-                        "label": null,
-                        "required": true
-                    },
-                    {
-                        "name": "Quantity",
-                        "type": "number",
-                        "label": null
-                    },
-                    {
-                        "name": "Item",
-                        "type": "text",
-                        "label": null,
-                        "required": true
-                    }
-                ]
-            }
-        },
-        {
-            "id": 4,
-            "module": "gateway:WebhookRespond",
-            "version": 1,
-            "parameters": {},
-            "mapper": {
-                "body": "{\n  \"found\": {{20.found}},\n  \"available\": {{20.available}},\n  \"quantity\": {{20.quantity}},\n  \"item\": \"{{20.item}}\"\n}",
-                "status": "200",
-                "headers": []
-            },
-            "metadata": {
-                "designer": {
-                    "x": 648,
-                    "y": 804,
-                    "name": "Return Inventory Result"
-                },
-                "restore": {
-                    "expect": {
-                        "headers": {
-                            "mode": "chose"
-                        }
-                    }
-                },
-                "expect": [
-                    {
-                        "name": "status",
-                        "type": "uinteger",
-                        "label": "Status",
-                        "required": true,
-                        "validate": {
-                            "min": 100
-                        }
-                    },
-                    {
-                        "name": "body",
-                        "type": "any",
-                        "label": "Body"
-                    },
-                    {
-                        "name": "headers",
-                        "spec": [
-                            {
-                                "name": "key",
-                                "type": "text",
-                                "label": "Key",
-                                "required": true,
-                                "validate": {
-                                    "max": 256
-                                }
+                            "mapper": {
+                                "status": "200",
+                                "body": "{\n  \"found\": {{false}},\n  \"available\": {{false}},\n  \"quantity\": 0,\n  \"item\": null,\n}",
+                                "headers": []
                             },
-                            {
-                                "name": "value",
-                                "type": "text",
-                                "label": "Value",
-                                "required": true,
-                                "validate": {
-                                    "max": 4096
-                                }
+                            "metadata": {
+                                "designer": {
+                                    "x": 1186,
+                                    "y": 567
+                                },
+                                "setupValidation": {
+                                    "version": 1,
+                                    "configuration": "5e1b6655a496915f",
+                                    "result": {
+                                        "valid": true,
+                                        "fields": []
+                                    }
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "validate": {
+                                            "min": 100
+                                        },
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        },
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "label": "Key",
+                                                "type": "text",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "label": "Value",
+                                                "type": "text",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
-                        ],
-                        "type": "array",
-                        "label": "Custom headers",
-                        "validate": {
-                            "maxItems": 16
                         }
-                    }
-                ]
-            }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 24,
+                            "module": "util:SetVariable2",
+                            "version": 1,
+                            "parameters": {},
+                            "filter": {
+                                "name": "Valid SKU",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{14.`__IMTAGGLENGTH__`}}",
+                                            "o": "number:greater",
+                                            "b": "0"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "name": "available",
+                                "value": "{{14.array[].`3` > 0}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 501,
+                                    "y": 576,
+                                    "name": "Determine Availability"
+                                },
+                                "restore": {},
+                                "expect": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Variable name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "any",
+                                        "label": "Variable value"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "available",
+                                        "type": "any",
+                                        "label": "available"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 23,
+                            "module": "util:SetVariable2",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "name": "matched_quantity",
+                                "value": "{{14.array[].`3`}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 225,
+                                    "y": 597,
+                                    "name": "Extract Matched Quantity"
+                                },
+                                "restore": {},
+                                "expect": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Variable name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "any",
+                                        "label": "Variable value"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "matched_quantity",
+                                        "type": "any",
+                                        "label": "matched_quantity"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 20,
+                            "module": "util:SetVariables",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "variables": [
+                                    {
+                                        "name": "found",
+                                        "value": "{{length(14.array) > 0}}"
+                                    },
+                                    {
+                                        "name": "available",
+                                        "value": "{{24.available}}"
+                                    },
+                                    {
+                                        "name": "quantity",
+                                        "value": "{{ifempty(23.matched_quantity; 0)}}"
+                                    },
+                                    {
+                                        "name": "item",
+                                        "value": "{{14.array[].`1`}}"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": -55,
+                                    "y": 714,
+                                    "name": "Process Inventory Result"
+                                },
+                                "setupValidation": {
+                                    "result": {
+                                        "valid": true,
+                                        "fields": []
+                                    },
+                                    "version": 1,
+                                    "configuration": "19e5a24ccfa8ea86"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "variables": {
+                                            "items": [
+                                                {
+                                                    "name": {
+                                                        "collapsed": true
+                                                    },
+                                                    "value": {
+                                                        "collapsed": true
+                                                    }
+                                                },
+                                                {
+                                                    "name": {
+                                                        "collapsed": true
+                                                    },
+                                                    "value": {
+                                                        "collapsed": true
+                                                    }
+                                                },
+                                                {
+                                                    "name": {
+                                                        "collapsed": true
+                                                    },
+                                                    "value": {
+                                                        "collapsed": true
+                                                    }
+                                                },
+                                                {
+                                                    "name": {
+                                                        "collapsed": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "variables",
+                                        "spec": {
+                                            "name": "value",
+                                            "spec": [
+                                                {
+                                                    "name": "name",
+                                                    "type": "text",
+                                                    "label": "Variable name",
+                                                    "required": true
+                                                },
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Variable value"
+                                                }
+                                            ],
+                                            "type": "collection",
+                                            "label": "Variable"
+                                        },
+                                        "type": "array",
+                                        "label": "Variables",
+                                        "validate": {
+                                            "unique": {
+                                                "by": "name"
+                                            },
+                                            "minItems": 1
+                                        }
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "found",
+                                        "type": "any",
+                                        "label": "found"
+                                    },
+                                    {
+                                        "name": "available",
+                                        "type": "any",
+                                        "label": "available"
+                                    },
+                                    {
+                                        "name": "quantity",
+                                        "type": "any",
+                                        "label": "quantity"
+                                    },
+                                    {
+                                        "name": "item",
+                                        "type": "any",
+                                        "label": "item"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 17,
+                            "module": "json:CreateJSON",
+                            "version": 1,
+                            "parameters": {
+                                "type": 618991,
+                                "space": ""
+                            },
+                            "mapper": {
+                                "Item": "{{20.item}}",
+                                "Found": "{{20.found}}",
+                                "Quantity": "{{20.quantity}}",
+                                "Available": "{{20.available}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 291,
+                                    "y": 838,
+                                    "name": "Format Inventory Result"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "Found": {
+                                            "mode": "edit"
+                                        },
+                                        "Available": {
+                                            "mode": "edit"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "type": {
+                                            "label": "Inventory Result"
+                                        },
+                                        "space": {
+                                            "label": "Empty"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "type",
+                                        "type": "udt",
+                                        "label": "Data structure",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "space",
+                                        "type": "select",
+                                        "label": "Indentation",
+                                        "validate": {
+                                            "enum": [
+                                                "tab",
+                                                "2",
+                                                "4"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "Found",
+                                        "type": "boolean",
+                                        "label": null,
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "Available",
+                                        "type": "boolean",
+                                        "label": null,
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "Quantity",
+                                        "type": "number",
+                                        "label": null
+                                    },
+                                    {
+                                        "name": "Item",
+                                        "type": "text",
+                                        "label": null,
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 4,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "body": "{\n  \"found\": {{20.found}},\n  \"available\": {{20.available}},\n  \"quantity\": {{20.quantity}},\n  \"item\": \"{{20.item}}\"\n}",
+                                "status": "200",
+                                "headers": []
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 579,
+                                    "y": 827,
+                                    "name": "Return Inventory Result"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "required": true,
+                                        "validate": {
+                                            "min": 100
+                                        }
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "metadata": {
