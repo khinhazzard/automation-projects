@@ -330,8 +330,8 @@
             "mapper": null,
             "metadata": {
                 "designer": {
-                    "x": 848,
-                    "y": 579
+                    "x": 681,
+                    "y": 566
                 }
             },
             "routes": [
@@ -361,8 +361,8 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 1186,
-                                    "y": 567
+                                    "x": 948,
+                                    "y": 572
                                 },
                                 "setupValidation": {
                                     "version": 1,
@@ -452,8 +452,8 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 501,
-                                    "y": 576,
+                                    "x": 380,
+                                    "y": 571,
                                     "name": "Determine Availability"
                                 },
                                 "restore": {},
@@ -490,8 +490,8 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 225,
-                                    "y": 597,
+                                    "x": 119,
+                                    "y": 590,
                                     "name": "Extract Matched Quantity"
                                 },
                                 "restore": {},
@@ -544,17 +544,17 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": -55,
-                                    "y": 714,
+                                    "x": -121,
+                                    "y": 683,
                                     "name": "Process Inventory Result"
                                 },
                                 "setupValidation": {
+                                    "version": 1,
+                                    "configuration": "19e5a24ccfa8ea86",
                                     "result": {
                                         "valid": true,
                                         "fields": []
-                                    },
-                                    "version": 1,
-                                    "configuration": "19e5a24ccfa8ea86"
+                                    }
                                 },
                                 "restore": {
                                     "expect": {
@@ -664,8 +664,8 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 291,
-                                    "y": 838,
+                                    "x": 196,
+                                    "y": 814,
                                     "name": "Format Inventory Result"
                                 },
                                 "restore": {
@@ -745,8 +745,8 @@
                             },
                             "metadata": {
                                 "designer": {
-                                    "x": 579,
-                                    "y": 827,
+                                    "x": 465,
+                                    "y": 809,
                                     "name": "Return Inventory Result"
                                 },
                                 "restore": {
