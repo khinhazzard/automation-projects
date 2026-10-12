@@ -1,8 +1,7 @@
-Extract and save the exact SKU from the dedicated product catalog table in the configured Knowledge Base for the product checked by the `check_inventory` action. Store only the SKU, not the product name or description.
+Extract and save the exact SKU for the product checked by `check_inventory`. Get the SKU from `BluePeak_Product_Catalog_and_SKU_Reference` in the Knowledge Base, matching the product name and SKU in the same row. Store only the SKU, not the product name or description.
 
-For example:
+Examples:
+- Water Heater Anode Rod → WH-039
 - Gas Control Valve → WH-045
-- Expansion Tank → WH-005
-- PEX Crimp Fitting Assortment → PL-055
 
-Never guess or construct a SKU. If the exact SKU cannot be verified, do not substitute the product name.
+Never guess or substitute a SKU. If the exact match cannot be verified, do not save a value.
