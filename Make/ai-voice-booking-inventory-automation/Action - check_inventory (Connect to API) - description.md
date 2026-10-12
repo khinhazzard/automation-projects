@@ -1,0 +1,1 @@
+The exact SKU copied directly from the matching product entry in the dedicated product catalog table in the configured Knowledge Base. Copy it exactly as listed; never guess, infer, construct, or substitute a SKU.
