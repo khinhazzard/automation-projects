@@ -79,12 +79,12 @@
                     "name": "Get Inventory"
                 },
                 "setupValidation": {
-                    "version": 1,
-                    "configuration": "a68628f74625c8c",
                     "result": {
                         "valid": true,
                         "fields": []
-                    }
+                    },
+                    "version": 1,
+                    "configuration": "a68628f74625c8c"
                 },
                 "restore": {
                     "expect": {
@@ -304,12 +304,12 @@
                     "name": "Match Result"
                 },
                 "setupValidation": {
-                    "version": 1,
-                    "configuration": "1a0662b489d0245d",
                     "result": {
                         "valid": true,
                         "fields": []
-                    }
+                    },
+                    "version": 1,
+                    "configuration": "1a0662b489d0245d"
                 },
                 "restore": {
                     "extra": {
@@ -348,15 +348,15 @@
                                     [
                                         {
                                             "a": "{{14.`__IMTAGGLENGTH__`}}",
-                                            "o": "number:equal",
-                                            "b": "0"
+                                            "b": "0",
+                                            "o": "number:equal"
                                         }
                                     ]
                                 ]
                             },
                             "mapper": {
-                                "status": "200",
                                 "body": "{\n  \"found\": {{false}},\n  \"available\": {{false}},\n  \"quantity\": 0,\n  \"item\": null,\n}",
+                                "status": "200",
                                 "headers": []
                             },
                             "metadata": {
@@ -365,12 +365,12 @@
                                     "y": 572
                                 },
                                 "setupValidation": {
-                                    "version": 1,
-                                    "configuration": "5e1b6655a496915f",
                                     "result": {
                                         "valid": true,
                                         "fields": []
-                                    }
+                                    },
+                                    "version": 1,
+                                    "configuration": "5e1b6655a496915f"
                                 },
                                 "restore": {
                                     "expect": {
@@ -384,10 +384,10 @@
                                         "name": "status",
                                         "type": "uinteger",
                                         "label": "Status",
+                                        "required": true,
                                         "validate": {
                                             "min": 100
-                                        },
-                                        "required": true
+                                        }
                                     },
                                     {
                                         "name": "body",
@@ -396,16 +396,11 @@
                                     },
                                     {
                                         "name": "headers",
-                                        "type": "array",
-                                        "label": "Custom headers",
-                                        "validate": {
-                                            "maxItems": 16
-                                        },
                                         "spec": [
                                             {
                                                 "name": "key",
-                                                "label": "Key",
                                                 "type": "text",
+                                                "label": "Key",
                                                 "required": true,
                                                 "validate": {
                                                     "max": 256
@@ -413,14 +408,19 @@
                                             },
                                             {
                                                 "name": "value",
-                                                "label": "Value",
                                                 "type": "text",
+                                                "label": "Value",
                                                 "required": true,
                                                 "validate": {
                                                     "max": 4096
                                                 }
                                             }
-                                        ]
+                                        ],
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        }
                                     }
                                 ]
                             }
@@ -440,8 +440,8 @@
                                     [
                                         {
                                             "a": "{{14.`__IMTAGGLENGTH__`}}",
-                                            "o": "number:greater",
-                                            "b": "0"
+                                            "b": "0",
+                                            "o": "number:greater"
                                         }
                                     ]
                                 ]
@@ -549,12 +549,12 @@
                                     "name": "Process Inventory Result"
                                 },
                                 "setupValidation": {
-                                    "version": 1,
-                                    "configuration": "19e5a24ccfa8ea86",
                                     "result": {
                                         "valid": true,
                                         "fields": []
-                                    }
+                                    },
+                                    "version": 1,
+                                    "configuration": "19e5a24ccfa8ea86"
                                 },
                                 "restore": {
                                     "expect": {
